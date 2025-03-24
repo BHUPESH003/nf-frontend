@@ -1,0 +1,464 @@
+@import url("./variables.css");
+/* NOTO SANS */
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../fonts/NotoSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../fonts/NotoSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* METLIFE CIRCULAR */
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-Light.otf) format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-LightItalic.otf) format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-Normal.otf) format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-NormalItalic.otf) format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-Medium.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-MediumItalic.otf) format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-Bold.otf) format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Metlife Circular";
+  src: url(../fonts/MetLifeCircular-BoldItalic.otf) format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Utopia */
+@font-face {
+  font-family: "Utopia";
+  src: url(../fonts/Utopia-Regular.otf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Utopia";
+  src: url(../fonts/Utopia-Semibold.otf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Utopia";
+  src: url(../fonts/Utopia-BoldOsF.otf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Utopia";
+  src: url(../fonts/Utopia-Black.otf) format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--noto-sans);
+  background: #f7f7f7;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: initial;
+}
+
+input {
+  font-family: var(--metlife-circular);
+  font-weight: var(--fw-bold);
+  font-size: 16px;
+}
+@media all and (min-width: 1200px) {
+  body {
+    background-image: url(../images/light-bg.png);
+    background-color: var(--white-secondary);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+/* remove after complete  */
+/* body {
+    background-image: url(../bgs/dashboard.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+} */
+
+@media all and (min-width: 1024px) {
+  .desktop-hide {
+    display: none !important;
+  }
+}
+@media all and (max-width: 1024px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+/* toastify css */
+.Toastify__toast {
+  align-items: center !important;
+}
+.Toastify__toast--success {
+  background-color: var(--bubbles-green) !important;
+  color: var(--heading-color);
+}
+.Toastify__toast--error {
+  background-color: var(--linen) !important;
+  color: var(--heading-color);
+}
+.Toastify__toast--info {
+  background-color: var(--bubbles-blue) !important;
+  color: var(--heading-color);
+}
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  background-color: var(--gray-light);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: var(--ocean-boat-blue);
+}
+.dashboard-carousel {
+  position: relative;
+}
+.dashboard-carousel .swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.dashboard-carousel .swiper-pagination-bullet {
+  background-color: var(--blizzard-blue);
+}
+.dashboard-carousel .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 18px;
+  height: 18px;
+  background-color: var(--ocean-boat-blue);
+}
+
+/* date picker css */
+.login__date_picker .MuiInputAdornment-root {
+  width: 24px !important;
+  height: 24px !important;
+}
+.login__date_picker .MuiButtonBase-root {
+  background: url(../images/icons/calendar-icon.svg) no-repeat !important;
+}
+
+.login__date_picker.has_value .MuiStack-root {
+  border-color: var(--ocean-boat-blue) !important;
+}
+.login__date_picker.login__date_picker .MuiStack-root:focus-within {
+  border-color: var(--ocean-boat-blue) !important;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: url(../images/icons/calendar-icon.svg) no-repeat;
+  background-position: 0% 0%;
+}
+
+.error {
+  color: var(--red) !important;
+  padding: 2px 0 !important;
+  font-size: 14px !important;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  text-transform: uppercase;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 50000s ease-in-out 0s;
+}
+input:focus-visible {
+  outline: 0;
+}
+
+input::placeholder {
+  color: var(--gray);
+  opacity: 1; /* Firefox */
+}
+
+input::-ms-input-placeholder {
+  /* Edge 12-18 */
+  color: var(--gray);
+}
+
+/* Manage Profile Slider css */
+.manage-profile-slider .swiper {
+  position: relative;
+}
+.manage-profile-slider .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.manage-profile-slider .swiper-button-next,
+.manage-profile-slider .swiper-button-prev {
+  top: 100px;
+}
+.manage-profile-slider .swiper-button-next::after,
+.manage-profile-slider .swiper-button-prev::after {
+  font-size: 0;
+  border: solid var(--blue);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 7px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.manage-profile-slider .swiper-button-prev::after {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.manage-profile-slider .swiper-button-next.swiper-button-disabled,
+.manage-profile-slider .swiper-button-prev.swiper-button-disabled {
+  opacity: 1;
+}
+.manage-profile-slider .swiper-button-next.swiper-button-disabled::after,
+.manage-profile-slider .swiper-button-prev.swiper-button-disabled::after {
+  border: solid var(--gray);
+  border-width: 0 3px 3px 0;
+}
+@media all and (min-width: 1200px) {
+  .manage-profile-slider .swiper-button-next,
+  .manage-profile-slider .swiper-button-prev {
+    top: 75px;
+  }
+}
+@media all and (min-width: 1440px) {
+  .manage-profile-slider .swiper-button-next,
+  .manage-profile-slider .swiper-button-prev {
+    top: calc(185px / 2);
+  }
+}
+/* css to change the width of toasts*/
+.Toastify__toast-container {
+  min-width: 200px;
+  width: 100%;
+  max-width: 800px !important;
+  line-height: 20px;
+  word-break: break-word;
+}
+@media all and (min-width: 1024px) {
+  .Toastify__toast-container {
+    width: auto;
+  }
+}
+section:has(.dashboard__bottom) {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.file-flex {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.file-flex .file-input {
+  flex-grow: 1;
+}
