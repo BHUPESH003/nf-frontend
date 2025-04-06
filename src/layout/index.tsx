@@ -1,11 +1,15 @@
+import useWindowWidth from "src/hooks/useWindowWidth";
 import BottomNav from "./bottomnav";
 import Sidebar from "./sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+    const isCollapsed = useWindowWidth() < 1024;
     return (
         <div className="min-h-screen flex flex-col md:flex-row">
             {/* Sidebar (left column) */}
-            <div className="hidden md:block md:w-64 text-white min-h-screen p-6">
+            <div
+                className={`hidden md:block ${isCollapsed ? "w-16" : "w-64"}  text-white min-h-screen`}
+            >
                 <Sidebar />
             </div>
 

@@ -12,7 +12,7 @@ export default function Login() {
         <div className="min-h-screen flex flex-col md:flex-row">
             {/* Left side for desktop */}
             <div className="hidden md:flex w-1/2 bg-[#00AEEF] text-white flex-col justify-center items-center p-10">
-                <h1 className="text-4xl font-bold mb-4">OnlyFans</h1>
+                <h1 className="text-4xl font-bold mb-4">NuttyFans</h1>
                 <p className="text-xl">
                     Sign up to support your favorite creators
                 </p>
@@ -67,22 +67,23 @@ export default function Login() {
                     </div>
 
                     <Button
-                        className="w-full bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white"
-                        variant="secondary"
+                        className="flex items-center justify-center px-2"
+                        variant="primary"
                     >
-                        <X className="mr-2" size={18} /> Sign in with X
+                        <X className="mr-2" size={18} />
+                        <span>Sign in with X</span>
                     </Button>
 
                     <Button
-                        className="w-full bg-[#4285F4] hover:bg-[#357ae8] text-white"
-                        variant="secondary"
+                        className="flex items-center justify-center px-2"
+                        variant="primary"
                     >
                         <Mail className="mr-2" size={18} /> Sign in with Google
                     </Button>
 
                     <Button
-                        className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800"
-                        variant="secondary"
+                        className="flex items-center justify-center px-2"
+                        variant="primary"
                     >
                         <Fingerprint className="mr-2" size={18} /> Passwordless
                         Sign In
