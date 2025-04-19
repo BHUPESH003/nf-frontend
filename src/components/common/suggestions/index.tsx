@@ -17,9 +17,13 @@ export type User = {
 
 type SuggestionsSwiperProps = {
     users: User[];
+    title: string;
 };
 
-export const Suggestions: React.FC<SuggestionsSwiperProps> = ({ users }) => {
+export const Suggestions: React.FC<SuggestionsSwiperProps> = ({
+    users,
+    title,
+}) => {
     // Group users into slides of 3 (desktop) or 2 (mobile)
 
     const prevRef = useRef<HTMLButtonElement | null>(null);
@@ -29,9 +33,7 @@ export const Suggestions: React.FC<SuggestionsSwiperProps> = ({ users }) => {
         <div className="w-full lg:max-w-xs px-2">
             {/* Heading + Buttons */}
             <div className="flex items-center justify-between px-2 mb-2">
-                <h2 className="text-sm font-semibold text-gray-600">
-                    Suggestions
-                </h2>
+                <h2 className="text-sm font-semibold text-gray-600">{title}</h2>
                 <div className="flex gap-2">
                     <button
                         ref={prevRef}
@@ -58,6 +60,7 @@ export const Suggestions: React.FC<SuggestionsSwiperProps> = ({ users }) => {
                     prevEl: prevRef.current,
                     nextEl: nextRef.current,
                 }}
+                watchOverflow={true}
                 onBeforeInit={(swiper) => {
                     if (swiper.params.navigation) {
                         const navigation = swiper.params
@@ -79,6 +82,9 @@ export const Suggestions: React.FC<SuggestionsSwiperProps> = ({ users }) => {
                         slidesPerView: 1,
                         slidesPerGroup: 1,
                     },
+                }}
+                onSwiper={(swiper) => {
+                    setTimeout(() => swiper.update(), 100);
                 }}
             >
                 {/* Slide with 2–3 stacked cards */}

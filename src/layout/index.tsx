@@ -1,8 +1,10 @@
 import useWindowWidth from "src/hooks/useWindowWidth";
 import BottomNav from "./bottomnav";
 import Sidebar from "./sidebar";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
     const isCollapsed = useWindowWidth() < 1024;
     return (
         <div className="min-h-screen flex flex-col md:flex-row">
@@ -14,9 +16,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
 
             {/* Main content area */}
-            <div className="flex-1 w-full md:w-auto p-4 pb-20 md:pb-4">
-                {children}
-            </div>
+            <main className="flex-1 w-full md:w-auto p-4 pb-20 md:pb-4">
+                <Suspense fallback={<h2>Loading.....</h2>}>
+                    <Outlet />
+                </Suspense>
+            </main>
 
             {/* Bottom navigation for small screens */}
             <div className="fixed bottom-0 w-full md:hidden z-50">

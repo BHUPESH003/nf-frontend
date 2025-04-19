@@ -92,3 +92,16 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
+.swiper {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.swiper-wrapper {
+    width: 100%;
+}
+
+.swiper-slide {
+    width: 100% !important;
+}
