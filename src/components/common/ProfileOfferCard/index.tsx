@@ -117,7 +117,7 @@ const ProfileOfferCard: React.FC<Props> = ({
                     Expired {expiryDate}
                 </p>
                 <p className="text-sm text-blue-500 mt-1 cursor-pointer">
-                    Show discounted options ⌄
+                    Show discounted options ⌄ {status}
                 </p>
             </div>
         </div>
