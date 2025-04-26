@@ -1,14 +1,16 @@
 import { useState } from "react";
 import ChatPreview from "src/components/common/chatPreview";
 import CustomModal from "src/components/common/customModal";
+import PostCard from "src/components/common/PostCard";
 import ProfileOfferCard from "src/components/common/ProfileOfferCard";
 import { Suggestions } from "src/components/common/suggestions";
 import UserPromoCard from "src/components/common/UserPromoCard";
 
 const dummyUsers = [
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -16,8 +18,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -25,8 +28,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -34,8 +38,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -43,8 +48,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -52,8 +58,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -61,8 +68,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -70,8 +78,9 @@ const dummyUsers = [
         online: true,
     },
     {
-        backgroundImage: "https://via.placeholder.com/400x200",
-        avatar: "https://via.placeholder.com/100",
+        backgroundImage:
+            "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
         username: "Kiara",
         handle: "@anishahot",
         isVerified: true,
@@ -82,7 +91,7 @@ const dummyUsers = [
 ];
 
 const Home = () => {
-    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <>
@@ -91,14 +100,8 @@ const Home = () => {
                 <Suggestions title="Expired Subscriptions" users={dummyUsers} />
             </div>
 
-            {/* Feed */}
-            <div className="space-y-6">
-                {/* Your posts will go here */}
-                <div className="bg-white p-4 rounded shadow">Post 1</div>
-                <div className="bg-white p-4 rounded shadow">Post 2</div>
-            </div>
             <UserPromoCard
-                profileImg="https://via.placeholder.com/48" // Replace with actual image
+                profileImg="https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg" // Replace with actual image
                 username="Lilly Bloomes"
                 handle="lillybloomes"
                 isVerified={true}
@@ -107,8 +110,8 @@ const Home = () => {
                 timestamp="Yesterday"
             />
             <ProfileOfferCard
-                bannerImage="https://via.placeholder.com/400x150"
-                profileImage="https://via.placeholder.com/48"
+                bannerImage="https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg"
+                profileImage="https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg"
                 username="Lilly Bloomes"
                 handle="lillybloomes"
                 isVerified={true}
@@ -121,7 +124,7 @@ const Home = () => {
                 showOfferCard={true}
             />
             <ChatPreview
-                profileImage="https://via.placeholder.com/48"
+                profileImage="https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg"
                 username="Ana 🍌"
                 handle="anabanana"
                 messagePreview="me & @xxhayjxxx can't keep …"
@@ -191,6 +194,39 @@ const Home = () => {
                     </ul>
                 </div>
             </CustomModal>
+            <PostCard
+                author={{
+                    name: "OnlyFans",
+                    handle: "onlyfans",
+                    avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
+                    postedAt: "21 minutes ago",
+                }}
+                content="@eminem69 takes on everything - from beta males to gender reveals, hook-ups with Gen Z to sobriety - in her deliriously funny first OFTV stand-up special."
+                links={[
+                    { label: "onlyfans.com/eminem69", url: "#" },
+                    { label: "onlyfans.com/oftv", url: "#" },
+                ]}
+                thumbnail="https://cdn2.onlyfans.com/files/0/0b/0bef5b9f4234ce181940ab2cfb4867d8/960x1251_8b66bd08dadde3aaf3cee0d1d9676e58.jpg?Tag=2&u=417589279&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6XC9cL2NkbjIub25seWZhbnMuY29tXC9maWxlc1wvMFwvMGJcLzBiZWY1YjlmNDIzNGNlMTgxOTQwYWIyY2ZiNDg2N2Q4XC85NjB4MTI1MV84YjY2YmQwOGRhZGRlM2FhZjNjZWUwZDFkOTY3NmU1OC5qcGc~VGFnPTImdT00MTc1ODkyNzkiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NDU3Njk2MDB9LCJJcEFkZHJlc3MiOnsiQVdTOlNvdXJjZUlwIjoiMjAyLjY2LjE2NS42XC8zMiJ9fX1dfQ__&Signature=TPhh6WmC1hyiDDv4IHm5sGcEUOoJj5DFqvQqFgldRNb3AYH7hQ~4F958pwcLul2r4QNCm5LhnpqLXLn-q3qbajBuob6VNTKjAcBLoAZGuKNyb28~N0yqhv~oTEvpTVdkgRg36GV5yXo-9XgfeoUeaaVSZhYX0sSFzQ9GLtWsJORRCQSVR7PSOuXXpfiST~1x3J4YB3COn51TbacaJXWTeakBp~GDk8q8ONcI8QndAn7DN8eBJBJFDSQpF~5aTi7SanneASPz-XW6lOs-i3Tk2UyVvCjG5LyDoxOmgIQ04u0WkMWb~Ad7p4AfxNsPnX-sMmMXRWmBUaXCqgzVAsgEuA__&Key-Pair-Id=APKAUSX4CWPPATFK2DGD"
+                highlightText={{
+                    title: "KERRYN FEEHAN",
+                    subtitle: "Don’t Serve Me",
+                }}
+                users={[
+                    {
+                        name: "Eminem69",
+                        handle: "eminem69",
+                        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
+                        banner: "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+                    },
+                    {
+                        name: "OFTV",
+                        handle: "oftv",
+                        avatar: "https://thumbs.onlyfans.com/public/files/thumbs/c144/8/8f/8ft/8ftrwwuluxoykhoiovqms1is5tid5nai1740479678/481933164/avatar.jpg",
+                        banner: "https://thumbs.onlyfans.com/public/files/thumbs/w480/d/df/dfs/dfs2fzh2kcraxtpxjbg1ztghpvxpl4vj1740479678/481933164/header_image.jpg",
+                    },
+                ]}
+                likes={14}
+            />
         </>
     );
 };

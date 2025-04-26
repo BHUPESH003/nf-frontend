@@ -10,7 +10,7 @@ const Layout = () => {
         <div className="min-h-screen flex flex-col md:flex-row">
             {/* Sidebar (left column) */}
             <div
-                className={`hidden md:block ${isCollapsed ? "w-16" : "w-64"}  text-white min-h-screen`}
+                className={`sticky top-0 overflow-auto h-[100vh] hidden md:block ${isCollapsed ? "w-16" : "w-64"}  text-white `}
             >
                 <Sidebar />
             </div>

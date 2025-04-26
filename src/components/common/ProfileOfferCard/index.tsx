@@ -42,7 +42,7 @@ const ProfileOfferCard: React.FC<Props> = ({
                     75 new posts
                 </span>
                 <span className="absolute top-2 right-2 bg-white text-black text-xs px-2 py-1 rounded shadow">
-                    Available now
+                    {status}
                 </span>
             </div>
 
@@ -117,7 +117,7 @@ const ProfileOfferCard: React.FC<Props> = ({
                     Expired {expiryDate}
                 </p>
                 <p className="text-sm text-blue-500 mt-1 cursor-pointer">
-                    Show discounted options ⌄ {status}
+                    Show discounted options ⌄
                 </p>
             </div>
         </div>
