@@ -1,6 +1,6 @@
 // components/ui/Button.tsx
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "danger";
     className?: string;
 }
 
@@ -15,6 +15,7 @@ export const Button = ({
     const variants = {
         primary: "bg-[var(--blue)] hover:bg-[var(--dp-blue)]",
         secondary: "bg-gray-300 hover:bg-gray-400 text-black",
+        danger: "bg-red-500 hover:bg-red-600 text-white",
     };
 
     return (

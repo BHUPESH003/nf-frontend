@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
     Home,
     Bell,
@@ -12,20 +13,32 @@ import {
 } from "lucide-react";
 import { Button } from "src/components/common/button";
 import useWindowWidth from "src/hooks/useWindowWidth";
+import { NotificationBadge } from "src/components/notifications/NotificationBadge";
 
 const Sidebar: React.FC = () => {
     // For demo: hardcoded to collapsed
     const isCollapsed = useWindowWidth() < 1024;
+    const navigate = useNavigate();
 
     const navItems = [
-        { icon: <Home size={20} />, label: "Home" },
-        { icon: <Bell size={20} />, label: "Notifications" },
-        { icon: <MessageCircle size={20} />, label: "Messages", badge: 15 },
-        { icon: <Star size={20} />, label: "Collections" },
-        { icon: <Users size={20} />, label: "Subscriptions" },
-        { icon: <CreditCard size={20} />, label: "Add card" },
-        { icon: <User size={20} />, label: "My profile" },
-        { icon: <MoreHorizontal size={20} />, label: "More" },
+        { icon: <Home size={20} />, label: "Home", to: "/" },
+        { 
+            icon: <Bell size={20} />, 
+            label: "Notifications", 
+            to: "/notifications",
+            badge: <NotificationBadge />
+        },
+        { 
+            icon: <MessageCircle size={20} />, 
+            label: "Messages", 
+            to: "/messages",
+            badge: 15 
+        },
+        { icon: <Star size={20} />, label: "Collections", to: "/bookmarks" },
+        { icon: <Users size={20} />, label: "Subscriptions", to: "/subscriptions" },
+        { icon: <CreditCard size={20} />, label: "Add card", to: "/settings/payments" },
+        { icon: <User size={20} />, label: "My profile", to: "/profile" },
+        { icon: <MoreHorizontal size={20} />, label: "More", to: "/settings" },
     ];
 
     return (
@@ -36,9 +49,10 @@ const Sidebar: React.FC = () => {
         >
             {/* Top Avatar */}
             <div
+                onClick={() => navigate('/profile')}
                 className={`flex items-center ${
                     isCollapsed ? "justify-center" : "space-x-3"
-                } mb-6`}
+                } mb-6 cursor-pointer hover:opacity-80`}
             >
                 <img
                     src="https://via.placeholder.com/40"
@@ -51,11 +65,14 @@ const Sidebar: React.FC = () => {
             {/* Navigation Items */}
             <nav className="flex flex-col gap-4 flex-1">
                 {navItems.map((item, index) => (
-                    <div
+                    <NavLink
                         key={index}
-                        className={`flex items-center ${
-                            isCollapsed ? "justify-center" : "justify-between"
-                        } group hover:text-blue-500 cursor-pointer`}
+                        to={item.to}
+                        className={({ isActive }) => `
+                            flex items-center ${isCollapsed ? "justify-center" : "justify-between"}
+                            group hover:text-blue-500 cursor-pointer
+                            ${isActive ? "text-blue-500" : ""}
+                        `}
                     >
                         {/* Icon + Badge wrapper */}
                         <div
@@ -67,9 +84,11 @@ const Sidebar: React.FC = () => {
                             <div className="relative">
                                 {item.icon}
                                 {item.badge && (
-                                    <span className="absolute -top-1 -right-1 text-[9px] bg-[var(--blue)] text-white rounded-full px-1 py-0.5 leading-none shadow">
-                                        {item.badge}
-                                    </span>
+                                    typeof item.badge === 'number' ? (
+                                        <span className="absolute -top-1 -right-1 text-[9px] bg-[var(--blue)] text-white rounded-full px-1 py-0.5 leading-none shadow">
+                                            {item.badge}
+                                        </span>
+                                    ) : item.badge
                                 )}
                             </div>
 
@@ -80,12 +99,13 @@ const Sidebar: React.FC = () => {
                                 </span>
                             )}
                         </div>
-                    </div>
+                    </NavLink>
                 ))}
             </nav>
 
             {/* Button */}
             <Button
+                onClick={() => navigate('/create')}
                 className={`flex items-center ${
                     isCollapsed ? "justify-center" : "justify-evenly"
                 } px-2`}

@@ -2,7 +2,7 @@ import React from "react";
 import { MoreHorizontal } from "lucide-react";
 
 type UserPreviewCardProps = {
-    backgroundImage: string;
+    backgroundImage?: string;
     avatar: string;
     username: string;
     handle: string;
@@ -12,7 +12,7 @@ type UserPreviewCardProps = {
 };
 
 export const UserPreviewCard: React.FC<UserPreviewCardProps> = ({
-    backgroundImage,
+    backgroundImage = '/images/default-cover.jpg',
     avatar,
     username,
     handle,

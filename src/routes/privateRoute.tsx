@@ -4,7 +4,8 @@ import { Navigate } from "react-router-dom";
 import { userAtom } from "src/store";
 
 function PrivateRoute(props: { children: JSX.Element }) {
-    const isAuthenticated = useAtom(userAtom)[0].id !== "";
+    const [user] = useAtom(userAtom);
+    const isAuthenticated = user?.id !== undefined;
     if (!isAuthenticated) {
         return <Navigate to={"/login"} />;
     }
