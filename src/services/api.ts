@@ -1,80 +1,84 @@
-import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { env } from 'src/config/env';
+import axios, {
+    AxiosInstance,
+    AxiosResponse,
+    InternalAxiosRequestConfig,
+} from "axios";
 
 export interface ApiResponse<T> {
-  data: T;
-  message?: string;
-  status: number;
+    data: T;
+    message?: string;
+    status: number;
 }
 
 export interface ApiError {
-  message: string;
-  code: string;
-  statusCode: number;
+    message: string;
+    code: string;
+    statusCode: number;
 }
 
 interface CustomRequestConfig extends InternalAxiosRequestConfig {
-  _retry?: boolean;
+    _retry?: boolean;
 }
 
+const baseURL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
 export const api: AxiosInstance = axios.create({
-  baseURL: env.API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true,
+    baseURL,
+    headers: {
+        "Content-Type": "application/json",
+    },
 });
 
+// Request interceptor to add auth token
 api.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    (config: InternalAxiosRequestConfig) => {
+        const accessToken = sessionStorage.getItem("accessToken");
+        if (accessToken) {
+            config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
 );
 
+// Response interceptor to handle token expiration
 api.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return {
-      ...response,
-      data: response.data 
-    };
-  },
-  async (error) => {
-    const originalRequest = error.config as CustomRequestConfig;
+    (response: AxiosResponse) => response,
+    async (error) => {
+        const originalRequest = error.config as CustomRequestConfig;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const response = await api.post<ApiResponse<{ accessToken: string }>>('/auth/refresh-token', {
-          refreshToken
-        });
-        
-        const { accessToken } = response.data.data;
-        localStorage.setItem('accessToken', accessToken);
-
-        if (originalRequest.headers) {
-          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        // If the error is not 401 or the request has already been retried, reject
+        if (error.response?.status !== 401 || originalRequest._retry) {
+            return Promise.reject(error);
         }
-        return api(originalRequest);
-      } catch (refreshError) {
-        localStorage.clear();
-        window.location.href = '/login';
-        return Promise.reject(refreshError);
-      }
-    }
 
-    const message = error.response?.data?.message || error.message;
-    return Promise.reject({
-      ...error,
-      message
-    });
-  }
-); 
+        originalRequest._retry = true;
+
+        try {
+            const refreshToken = sessionStorage.getItem("refreshToken");
+            if (!refreshToken) {
+                throw new Error("No refresh token available");
+            }
+
+            // Attempt to refresh the token
+            const response = await axios.post(`${baseURL}/auth/refresh`, {
+                refreshToken,
+            });
+            console.log(response.data);
+            const { accessToken } = response.data.data;
+
+            sessionStorage.setItem("accessToken", accessToken);
+
+            // Retry the original request with the new token
+            originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+            return axios(originalRequest);
+        } catch (refreshError) {
+            // If token refresh fails, clear auth state and reject
+            sessionStorage.clear();
+            window.location.href = "/login";
+            return Promise.reject(refreshError);
+        }
+    }
+);

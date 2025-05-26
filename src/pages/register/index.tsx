@@ -10,19 +10,24 @@ import { z } from "zod";
 import { useState } from "react";
 import { authService } from "src/services/auth-service";
 
-const registerSchema = z.object({
-    fullName: z.string().min(2, "Full name must be at least 2 characters"),
-    username: z
-        .string()
-        .min(3, "Username must be at least 3 characters")
-        .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-    confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-});
+const registerSchema = z
+    .object({
+        fullName: z.string().min(2, "Full name must be at least 2 characters"),
+        username: z
+            .string()
+            .min(3, "Username must be at least 3 characters")
+            .regex(
+                /^[a-zA-Z0-9_]+$/,
+                "Username can only contain letters, numbers, and underscores"
+            ),
+        email: z.string().email("Invalid email address"),
+        password: z.string().min(6, "Password must be at least 6 characters"),
+        confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: "Passwords don't match",
+        path: ["confirmPassword"],
+    });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -44,7 +49,7 @@ export default function Register() {
         try {
             setIsLoading(true);
             setError("");
-            
+
             // Remove confirmPassword as it's not needed for the API
             const { confirmPassword, ...registerData } = data;
             const response = await authService.register(registerData);
@@ -52,10 +57,12 @@ export default function Register() {
             setuserAtom(response.data.user);
             navigate("/");
         } catch (err) {
-            setError(err?.message || "Failed to create account. Please try again.");
+            setError(
+                err?.message || "Failed to create account. Please try again."
+            );
         } finally {
             setIsLoading(false);
-        };
+        }
     };
 
     const handleSocialLogin = (provider: string) => {
@@ -68,16 +75,16 @@ export default function Register() {
             {/* Left side for desktop */}
             <div className="hidden md:flex w-1/2 bg-[#00AEEF] text-white flex-col justify-center items-center p-10">
                 <h1 className="text-4xl font-bold mb-4">NuttyFans</h1>
-                <p className="text-xl">
-                    Join the community and start earning
-                </p>
+                <p className="text-xl">Join the community and start earning</p>
             </div>
 
             {/* Right side form */}
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-6 py-10">
                 <div className="w-full max-w-sm space-y-6">
                     <div>
-                        <h2 className="text-xl font-semibold">Create Account</h2>
+                        <h2 className="text-xl font-semibold">
+                            Create Account
+                        </h2>
                     </div>
 
                     {error && (
@@ -86,7 +93,10 @@ export default function Register() {
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-6"
+                    >
                         <div className="space-y-1">
                             <Input
                                 label="Full Name"
@@ -122,7 +132,6 @@ export default function Register() {
                                 label="Password"
                                 placeholder="Password"
                                 type="password"
-                                isPassword
                                 {...register("password")}
                                 error={errors.password?.message}
                             />
@@ -133,7 +142,6 @@ export default function Register() {
                                 label="Confirm Password"
                                 placeholder="Confirm Password"
                                 type="password"
-                                isPassword
                                 {...register("confirmPassword")}
                                 error={errors.confirmPassword?.message}
                             />
@@ -150,12 +158,18 @@ export default function Register() {
 
                     <p className="text-xs text-gray-500">
                         By signing up and using OnlyFans, you agree to our
-                        <Link to="/terms" className="text-blue-500 cursor-pointer">
+                        <Link
+                            to="/terms"
+                            className="text-blue-500 cursor-pointer"
+                        >
                             {" "}
                             Terms of Service{" "}
                         </Link>
                         and
-                        <Link to="/privacy" className="text-blue-500 cursor-pointer">
+                        <Link
+                            to="/privacy"
+                            className="text-blue-500 cursor-pointer"
+                        >
                             {" "}
                             Privacy Policy
                         </Link>
@@ -163,7 +177,9 @@ export default function Register() {
                     </p>
 
                     <div className="text-sm text-center">
-                        <span className="text-gray-600">Already have an account?</span>{" "}
+                        <span className="text-gray-600">
+                            Already have an account?
+                        </span>{" "}
                         <Link to="/login" className="text-blue-500">
                             Log in
                         </Link>
@@ -174,7 +190,9 @@ export default function Register() {
                             <div className="w-full border-t border-gray-300" />
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                            <span className="px-2 bg-white text-gray-500">
+                                Or continue with
+                            </span>
                         </div>
                     </div>
 
@@ -182,7 +200,7 @@ export default function Register() {
                         className="flex items-center justify-center px-2 w-full"
                         variant="primary"
                         type="button"
-                        onClick={() => handleSocialLogin('twitter')}
+                        onClick={() => handleSocialLogin("twitter")}
                     >
                         <X className="mr-2" size={18} />
                         <span>Sign up with X</span>
@@ -192,7 +210,7 @@ export default function Register() {
                         className="flex items-center justify-center px-2 w-full"
                         variant="primary"
                         type="button"
-                        onClick={() => handleSocialLogin('google')}
+                        onClick={() => handleSocialLogin("google")}
                     >
                         <Mail className="mr-2" size={18} /> Sign up with Google
                     </Button>
@@ -201,7 +219,7 @@ export default function Register() {
                         className="flex items-center justify-center px-2 w-full"
                         variant="primary"
                         type="button"
-                        onClick={() => handleSocialLogin('passwordless')}
+                        onClick={() => handleSocialLogin("passwordless")}
                     >
                         <Fingerprint className="mr-2" size={18} /> Passwordless
                         Sign Up
@@ -210,4 +228,4 @@ export default function Register() {
             </div>
         </div>
     );
-} 
+}

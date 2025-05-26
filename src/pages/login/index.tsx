@@ -35,7 +35,7 @@ export default function Login() {
         try {
             setIsLoading(true);
             setError("");
-            
+
             const response = await authService.login(data);
             setuserAtom(response.data.user);
             navigate("/feed");
@@ -74,7 +74,10 @@ export default function Login() {
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-6"
+                    >
                         <div className="space-y-1">
                             <Input
                                 label="Email"
@@ -90,7 +93,6 @@ export default function Login() {
                                 label="Password"
                                 placeholder="Password"
                                 type="password"
-                                isPassword
                                 {...register("password")}
                                 error={errors.password?.message}
                             />
@@ -107,12 +109,18 @@ export default function Login() {
 
                     <p className="text-xs text-gray-500">
                         By logging in and using OnlyFans, you agree to our
-                        <Link to="/terms" className="text-blue-500 cursor-pointer">
+                        <Link
+                            to="/terms"
+                            className="text-blue-500 cursor-pointer"
+                        >
                             {" "}
                             Terms of Service{" "}
                         </Link>
                         and
-                        <Link to="/privacy" className="text-blue-500 cursor-pointer">
+                        <Link
+                            to="/privacy"
+                            className="text-blue-500 cursor-pointer"
+                        >
                             {" "}
                             Privacy Policy
                         </Link>
@@ -134,7 +142,9 @@ export default function Login() {
                             <div className="w-full border-t border-gray-300" />
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                            <span className="px-2 bg-white text-gray-500">
+                                Or continue with
+                            </span>
                         </div>
                     </div>
 
@@ -142,7 +152,7 @@ export default function Login() {
                         className="flex items-center justify-center px-2 w-full"
                         variant="primary"
                         type="button"
-                        onClick={() => handleSocialLogin('twitter')}
+                        onClick={() => handleSocialLogin("twitter")}
                     >
                         <X className="mr-2" size={18} />
                         <span>Sign in with X</span>
@@ -152,7 +162,7 @@ export default function Login() {
                         className="flex items-center justify-center px-2 w-full"
                         variant="primary"
                         type="button"
-                        onClick={() => handleSocialLogin('google')}
+                        onClick={() => handleSocialLogin("google")}
                     >
                         <Mail className="mr-2" size={18} /> Sign in with Google
                     </Button>
@@ -161,7 +171,7 @@ export default function Login() {
                         className="flex items-center justify-center px-2 w-full"
                         variant="primary"
                         type="button"
-                        onClick={() => handleSocialLogin('passwordless')}
+                        onClick={() => handleSocialLogin("passwordless")}
                     >
                         <Fingerprint className="mr-2" size={18} /> Passwordless
                         Sign In
