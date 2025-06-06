@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
 import { authService } from "src/services/auth-service";
+import { authStateAtom } from "src/store/auth";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -22,6 +23,7 @@ export default function Login() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+    const setAuthAtom = useSetAtom(authStateAtom);
 
     const {
         register,
@@ -37,6 +39,12 @@ export default function Login() {
             setError("");
 
             const response = await authService.login(data);
+            setAuthAtom({
+                user: response.data.user,
+                isLoading: false,
+                isAuthenticated: true,
+                error: null,
+            });
             setuserAtom(response.data.user);
             navigate("/feed");
         } catch (err) {

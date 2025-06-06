@@ -51,9 +51,8 @@ export default function Register() {
             setError("");
 
             // Remove confirmPassword as it's not needed for the API
-            const { confirmPassword, ...registerData } = data;
+            const { ...registerData } = data;
             const response = await authService.register(registerData);
-            console.log(confirmPassword);
             setuserAtom(response.data.user);
             navigate("/");
         } catch (err) {

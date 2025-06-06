@@ -17,7 +17,6 @@ import { SearchPage } from "src/pages/search/SearchPage";
 import { NotificationsPage } from "src/pages/notifications/NotificationsPage";
 import { BookmarksPage } from "src/pages/bookmarks/BookmarksPage";
 
-
 const router = createBrowserRouter([
     {
         path: "/login",
@@ -47,63 +46,63 @@ const router = createBrowserRouter([
                 path: "/feed",
                 element: <FeedPage />,
             },
-            
+
             {
-                path: '/create',
+                path: "/create",
                 element: <CreatePostPage />,
-              },
-              {
-                path: '/my-posts',
+            },
+            {
+                path: "/my-posts",
                 element: <MyPostsPage />,
-              },
-              {
-                path: '/profile',
+            },
+            {
+                path: "/profile/:id",
                 element: <ProfilePage />,
-              },
-              {
-                path: '/settings/profile',
+            },
+            {
+                path: "/settings/profile",
                 element: <EditProfilePage />,
-              },
-              {
-                path: '/settings/subscriptions',
+            },
+            {
+                path: "/settings/subscriptions",
                 element: <SubscriptionSettingsPage />,
-              },
-              {
-                path: '/settings/subscribers',
+            },
+            {
+                path: "/settings/subscribers",
                 element: <SubscribersPage />,
-              },
-              {
-                path: '/settings/payments',
+            },
+            {
+                path: "/settings/payments",
                 element: <PaymentSettingsPage />,
-              },
-              {
-                path: '/settings/payments/advanced',
+            },
+            {
+                path: "/settings/payments/advanced",
                 element: <AdvancedPaymentDashboard />,
-              },
-              {
-                path: '/messages',
+            },
+            {
+                path: "/messages",
                 element: <MessagingPage />,
-              },
-              {
-                path: '/messages/:conversationId',
+            },
+            {
+                path: "/messages/:conversationId",
                 element: <MessagingPage />,
-              },
-              {
-                path: '/search',
+            },
+            {
+                path: "/search",
                 element: <SearchPage />,
-              },
-              {
-                path: '/notifications',
+            },
+            {
+                path: "/notifications",
                 element: <NotificationsPage />,
-              },
-              {
-                path: '/bookmarks',
+            },
+            {
+                path: "/bookmarks",
                 element: <BookmarksPage />,
-              },
-              {
-                path: '/bookmarks/collections/:collectionId',
+            },
+            {
+                path: "/bookmarks/collections/:collectionId",
                 element: <BookmarksPage />,
-              },
+            },
         ],
     },
 ]);

@@ -1,12 +1,6 @@
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-
-interface User {
-    id: string;
-    email: string;
-    name: string;
-    // Add other user fields as needed
-}
+import { User } from "src/types/user";
 
 interface AuthState {
     user: User | null;

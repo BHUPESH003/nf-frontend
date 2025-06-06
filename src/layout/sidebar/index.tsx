@@ -14,30 +14,45 @@ import {
 import { Button } from "src/components/common/button";
 import useWindowWidth from "src/hooks/useWindowWidth";
 import { NotificationBadge } from "src/components/notifications/NotificationBadge";
+import { useAtomValue } from "jotai";
+import { userAtom } from "src/store";
 
 const Sidebar: React.FC = () => {
+    const userAtomValue = useAtomValue(userAtom);
     // For demo: hardcoded to collapsed
     const isCollapsed = useWindowWidth() < 1024;
     const navigate = useNavigate();
 
     const navItems = [
         { icon: <Home size={20} />, label: "Home", to: "/" },
-        { 
-            icon: <Bell size={20} />, 
-            label: "Notifications", 
+        {
+            icon: <Bell size={20} />,
+            label: "Notifications",
             to: "/notifications",
-            badge: <NotificationBadge />
+            badge: <NotificationBadge />,
         },
-        { 
-            icon: <MessageCircle size={20} />, 
-            label: "Messages", 
+        {
+            icon: <MessageCircle size={20} />,
+            label: "Messages",
             to: "/messages",
-            badge: 15 
+            badge: 15,
         },
         { icon: <Star size={20} />, label: "Collections", to: "/bookmarks" },
-        { icon: <Users size={20} />, label: "Subscriptions", to: "/subscriptions" },
-        { icon: <CreditCard size={20} />, label: "Add card", to: "/settings/payments" },
-        { icon: <User size={20} />, label: "My profile", to: "/profile" },
+        {
+            icon: <Users size={20} />,
+            label: "Subscriptions",
+            to: "/subscriptions",
+        },
+        {
+            icon: <CreditCard size={20} />,
+            label: "Add card",
+            to: "/settings/payments",
+        },
+        {
+            icon: <User size={20} />,
+            label: "My profile",
+            to: `/profile/${userAtomValue?.username}`,
+        },
         { icon: <MoreHorizontal size={20} />, label: "More", to: "/settings" },
     ];
 
@@ -49,7 +64,7 @@ const Sidebar: React.FC = () => {
         >
             {/* Top Avatar */}
             <div
-                onClick={() => navigate('/profile')}
+                onClick={() => navigate(`/profile/${userAtomValue?.username}`)}
                 className={`flex items-center ${
                     isCollapsed ? "justify-center" : "space-x-3"
                 } mb-6 cursor-pointer hover:opacity-80`}
@@ -83,13 +98,14 @@ const Sidebar: React.FC = () => {
                             {/* Icon with badge */}
                             <div className="relative">
                                 {item.icon}
-                                {item.badge && (
-                                    typeof item.badge === 'number' ? (
+                                {item.badge &&
+                                    (typeof item.badge === "number" ? (
                                         <span className="absolute -top-1 -right-1 text-[9px] bg-[var(--blue)] text-white rounded-full px-1 py-0.5 leading-none shadow">
                                             {item.badge}
                                         </span>
-                                    ) : item.badge
-                                )}
+                                    ) : (
+                                        item.badge
+                                    ))}
                             </div>
 
                             {/* Label */}
@@ -105,7 +121,7 @@ const Sidebar: React.FC = () => {
 
             {/* Button */}
             <Button
-                onClick={() => navigate('/create')}
+                onClick={() => navigate("/create")}
                 className={`flex items-center ${
                     isCollapsed ? "justify-center" : "justify-evenly"
                 } px-2`}

@@ -1,12 +1,11 @@
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { JSX } from "react";
 import { Navigate } from "react-router-dom";
-import { userAtom } from "src/store";
+import { authStateAtom } from "src/store/auth";
 
 function PrivateRoute(props: { children: JSX.Element }) {
-    const [user] = useAtom(userAtom);
-    const isAuthenticated = user?.id !== undefined;
-    if (!isAuthenticated) {
+    const authAtomValue = useAtomValue(authStateAtom);
+    if (!authAtomValue?.isAuthenticated) {
         return <Navigate to={"/login"} />;
     }
 

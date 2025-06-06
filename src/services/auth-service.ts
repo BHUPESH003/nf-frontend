@@ -30,6 +30,7 @@ class AuthService {
         // Store tokens
         setStoredAccessToken(accessToken);
         setStoredRefreshToken(refreshToken);
+
         // Check if access token exists and set user atom
         // if (getStoredAccessToken()) {
         //     const userResponse = await this.getProfile();

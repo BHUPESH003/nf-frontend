@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Camera, Edit2, CheckCircle } from 'lucide-react';
-import { Button } from '../common/button';
-import { UserProfile } from 'src/types/profile';
-import { profileService } from 'src/services/profile-service';
+import { useState } from "react";
+import { Camera, Edit2, CheckCircle } from "lucide-react";
+import { Button } from "../common/button";
+import { UserProfile } from "src/types/profile";
+import { profileService } from "src/services/profile-service";
 
 interface ProfileHeaderProps {
     profile: UserProfile;
@@ -10,10 +10,16 @@ interface ProfileHeaderProps {
     onProfileUpdate: (profile: UserProfile) => void;
 }
 
-export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: ProfileHeaderProps) {
+export function ProfileHeader({
+    profile,
+    isOwnProfile,
+    onProfileUpdate,
+}: ProfileHeaderProps) {
     const [isEditingImages, setIsEditingImages] = useState(false);
 
-    const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAvatarChange = async (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
@@ -21,11 +27,13 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
             const result = await profileService.updateProfileImage(file);
             onProfileUpdate({ ...profile, avatarUrl: result.data.avatarUrl });
         } catch (error) {
-            console.error('Failed to update avatar:', error);
+            console.error("Failed to update avatar:", error);
         }
     };
 
-    const handleCoverChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCoverChange = async (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
@@ -33,7 +41,7 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
             const result = await profileService.updateCoverImage(file);
             onProfileUpdate({ ...profile, coverUrl: result.data.coverUrl });
         } catch (error) {
-            console.error('Failed to update cover:', error);
+            console.error("Failed to update cover:", error);
         }
     };
 
@@ -42,7 +50,7 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
             {/* Cover Photo */}
             <div className="relative h-48 md:h-64 bg-gray-200">
                 <img
-                    src={profile.coverUrl || '/default-cover.jpg'}
+                    src={profile.coverUrl || "/default-cover.jpg"}
                     alt="Cover"
                     className="w-full h-full object-cover"
                 />
@@ -65,7 +73,7 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
                     {/* Profile Picture */}
                     <div className="relative">
                         <img
-                            src={profile.avatarUrl || '/default-avatar.jpg'}
+                            src={profile.avatarUrl || "/default-avatar.jpg"}
                             alt={profile.fullName}
                             className="h-32 w-32 rounded-full border-4 border-white object-cover"
                         />
@@ -92,8 +100,12 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
                                 <CheckCircle className="ml-2 h-5 w-5 text-blue-500" />
                             )}
                         </div>
-                        <p className="text-sm text-gray-500">@{profile.username}</p>
-                        <p className="mt-1 max-w-2xl text-sm text-gray-500">{profile.bio}</p>
+                        <p className="text-sm text-gray-500">
+                            @{profile.username}
+                        </p>
+                        <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                            {profile.bio}
+                        </p>
                     </div>
 
                     {/* Action Buttons */}
@@ -102,7 +114,9 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
                             <div className="flex space-x-3">
                                 <Button
                                     variant="secondary"
-                                    onClick={() => setIsEditingImages(!isEditingImages)}
+                                    onClick={() =>
+                                        setIsEditingImages(!isEditingImages)
+                                    }
                                 >
                                     {isEditingImages ? (
                                         <>
@@ -126,27 +140,33 @@ export function ProfileHeader({ profile, isOwnProfile, onProfileUpdate }: Profil
                 </div>
 
                 {/* Stats */}
-                <div className="mt-6 grid grid-cols-3 gap-4 border-t border-gray-200 pt-4">
+                {/* <div className="mt-6 grid grid-cols-3 gap-4 border-t border-gray-200 pt-4">
                     <div className="text-center">
                         <span className="text-xl font-bold text-gray-900">
-                            {profile.stats.posts}
+                            {profile?.stats.posts}
                         </span>
-                        <span className="block text-sm text-gray-500">Posts</span>
+                        <span className="block text-sm text-gray-500">
+                            Posts
+                        </span>
                     </div>
                     <div className="text-center">
                         <span className="text-xl font-bold text-gray-900">
                             {profile.stats.followers}
                         </span>
-                        <span className="block text-sm text-gray-500">Followers</span>
+                        <span className="block text-sm text-gray-500">
+                            Followers
+                        </span>
                     </div>
                     <div className="text-center">
                         <span className="text-xl font-bold text-gray-900">
                             {profile.stats.following}
                         </span>
-                        <span className="block text-sm text-gray-500">Following</span>
+                        <span className="block text-sm text-gray-500">
+                            Following
+                        </span>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
-} 
+}
